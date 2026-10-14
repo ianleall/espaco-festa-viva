@@ -6,12 +6,12 @@ export const Route = createFileRoute("/")({ component: FestaViva });
 const INSTAGRAM = "https://www.instagram.com/espacofestaviva/";
 const ENDERECO = "R. da Coelba, 204-250 — Camacan, BA, 45880-000";
 const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=Espaço+Festa+Viva+Camacan+BA";
-const TIPOS = ["Aniversário infantil", "Aniversário adulto", "Chá de bebê ou revelação", "Batizado", "Formatura", "Outro"];
+const TIPOS = ["Aniversário infantil", "Aniversário adulto", "Formatura", "Confraternização", "Outro"];
 const DIFERENCIAIS = [
   { titulo: "Decoração que já é festa", texto: "Um cenário acolhedor, com detalhes que ajudam a tornar cada comemoração especial." },
   { titulo: "Conforto para todos", texto: "Um espaço para reunir crianças e adultos e aproveitar a celebração juntos." },
   { titulo: "Atendimento direto", texto: "Converse com a equipe, tire suas dúvidas e planeje os detalhes antes da data." },
-  { titulo: "Para cada comemoração", texto: "Aniversários, chás, batizados, formaturas e encontros em família." },
+  { titulo: "Para cada comemoração", texto: "Aniversários, formaturas, confraternizações e encontros em família." },
 ];
 const AVALIACOES = [
   { nome: "Vitinho Costa", texto: "Um ótimo espaço com um histórico de eventos praticamente impecável." },
@@ -71,11 +71,12 @@ function Orcamento() {
       `Convidados: ${convidados || "a definir"}`,
       obs ? `Observações: ${obs}` : "",
     ].filter(Boolean).join("\n");
-    const url = `${INSTAGRAM}`;
-    const texto = encodeURIComponent(mensagem);
-    window.open(`https://wa.me/?text=${texto}`, "_blank", "noopener,noreferrer");
-    // Instagram remains available for direct contact until a WhatsApp number is configured.
-    void url;
+    // Não há número oficial de WhatsApp configurado; abrimos o Direct do Instagram.
+    // A mensagem é copiada para que a pessoa possa colá-la na conversa.
+    if (navigator.clipboard?.writeText) {
+      void navigator.clipboard.writeText(mensagem).catch(() => undefined);
+    }
+    window.open("https://ig.me/m/espacofestaviva", "_blank", "noopener,noreferrer");
   }
 
   return <form className="fv-form" onSubmit={enviar}>
@@ -87,7 +88,7 @@ function Orcamento() {
     </div>
     <div className="fv-field"><label htmlFor="fv-obs">Quer contar mais alguma coisa?</label><textarea id="fv-obs" value={obs} onChange={e => setObs(e.target.value)} /></div>
     <button className="fv-btn fv-primary" type="submit">Preparar pedido de orçamento</button>
-    <p className="fv-note">A mensagem será preparada para você enviar. Nenhum dado fica guardado neste site.</p>
+    <p className="fv-note">Vamos abrir o Direct do Instagram. Se possível, a mensagem do orçamento será copiada para você colar na conversa. Nenhum dado fica guardado neste site.</p>
   </form>;
 }
 
