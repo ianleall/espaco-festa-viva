@@ -4,6 +4,8 @@ import { useState, type FormEvent } from "react";
 export const Route = createFileRoute("/")({ component: FestaViva });
 
 const INSTAGRAM = "https://www.instagram.com/espacofestaviva/";
+const WHATSAPP = "557399992045";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP}`;
 const ENDERECO = "R. da Coelba, 204-250 — Camacan, BA, 45880-000";
 const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=Espaço+Festa+Viva+Camacan+BA";
 const TIPOS = ["Aniversário infantil", "Aniversário adulto", "Formatura", "Confraternização", "Outro"];
@@ -71,12 +73,7 @@ function Orcamento() {
       `Convidados: ${convidados || "a definir"}`,
       obs ? `Observações: ${obs}` : "",
     ].filter(Boolean).join("\n");
-    // Não há número oficial de WhatsApp configurado; abrimos o Direct do Instagram.
-    // A mensagem é copiada para que a pessoa possa colá-la na conversa.
-    if (navigator.clipboard?.writeText) {
-      void navigator.clipboard.writeText(mensagem).catch(() => undefined);
-    }
-    window.open("https://ig.me/m/espacofestaviva", "_blank", "noopener,noreferrer");
+    window.open(`${WHATSAPP_URL}?text=${encodeURIComponent(mensagem)}`, "_blank", "noopener,noreferrer");
   }
 
   return <form className="fv-form" onSubmit={enviar}>
@@ -88,7 +85,7 @@ function Orcamento() {
     </div>
     <div className="fv-field"><label htmlFor="fv-obs">Quer contar mais alguma coisa?</label><textarea id="fv-obs" value={obs} onChange={e => setObs(e.target.value)} /></div>
     <button className="fv-btn fv-primary" type="submit">Preparar pedido de orçamento</button>
-    <p className="fv-note">Vamos abrir o Direct do Instagram. Se possível, a mensagem do orçamento será copiada para você colar na conversa. Nenhum dado fica guardado neste site.</p>
+    <p className="fv-note">O WhatsApp será aberto com sua mensagem pronta para enviar. Nenhum dado fica guardado neste site.</p>
   </form>;
 }
 
@@ -109,7 +106,7 @@ function FestaViva() {
       <section className="fv-section fv-alt" id="espaco"><div className="fv-wrap"><div className="fv-kicker">Um lugar para celebrar</div><h2>Tudo pronto para a sua festa acontecer</h2><p className="fv-intro">Você escolhe a data e conta o que imagina. O espaço cuida do cenário.</p><div className="fv-grid">{DIFERENCIAIS.map(d => <article className="fv-card" key={d.titulo}><h3>{d.titulo}</h3><p>{d.texto}</p></article>)}</div></div></section>
       <section className="fv-section" id="galeria"><div className="fv-wrap"><div className="fv-kicker">Detalhes que fazem a diferença</div><h2>Veja como as festas ganham vida</h2><div className="fv-gallery"><div className="fv-gallery-art" role="img" aria-label="Composição decorativa em tons dourados para celebrações"><span>Momentos inesquecíveis</span></div><div className="fv-gallery-art" role="img" aria-label="Cenário elegante em tons quentes"><span>Cada detalhe importa</span></div><div className="fv-gallery-art" role="img" aria-label="Ambiente acolhedor para eventos"><span>Feito para celebrar</span></div></div></div></section>
       <section className="fv-section fv-alt" id="avaliacoes"><div className="fv-wrap"><div className="fv-kicker">Experiências compartilhadas</div><h2>Quem já celebrou aqui</h2><div className="fv-rating"><strong>4,3</strong><span><span aria-label="11 avaliações no Google">★★★★★</span><br/>Nota no Google, com 11 avaliações · <a href={MAPS_URL} target="_blank" rel="noreferrer" style={{color:"var(--gold-light)"}}>Ver todas</a></span></div><div className="fv-reviews">{AVALIACOES.map((a,i)=><figure className="fv-card" key={i}><blockquote>“{a.texto}”</blockquote><figcaption>{a.nome}</figcaption></figure>)}</div></div></section>
-      <section className="fv-section" id="contato"><div className="fv-wrap fv-contact"><div><div className="fv-kicker">Vamos conversar</div><h2>Vamos planejar a sua festa?</h2><p className="fv-intro">Preencha os dados ao lado e retornaremos com datas disponíveis e valores.</p><div className="fv-info"><div><b>Onde fica</b><span>{ENDERECO}</span><br/><a href={MAPS_URL} target="_blank" rel="noreferrer">Ver no mapa ↗</a></div><div><b>Instagram</b><a href={INSTAGRAM} target="_blank" rel="noreferrer">@espacofestaviva ↗</a></div></div></div><Orcamento/></div></section>
+      <section className="fv-section" id="contato"><div className="fv-wrap fv-contact"><div><div className="fv-kicker">Vamos conversar</div><h2>Vamos planejar a sua festa?</h2><p className="fv-intro">Preencha os dados ao lado e retornaremos com datas disponíveis e valores.</p><div className="fv-info"><div><b>Onde fica</b><span>{ENDERECO}</span><br/><a href={MAPS_URL} target="_blank" rel="noreferrer">Ver no mapa ↗</a></div><div><b>WhatsApp</b><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Enviar mensagem pelo WhatsApp ↗</a></div><div><b>Instagram</b><a href={INSTAGRAM} target="_blank" rel="noreferrer">@espacofestaviva ↗</a></div></div></div><Orcamento/></div></section>
     </main>
     <footer className="fv-footer"><div className="fv-wrap fv-footer-inner"><span className="fv-brand">Espaço <span>Festa Viva</span></span><span>{ENDERECO}</span><span>© {new Date().getFullYear()} Espaço Festa Viva</span></div></footer>
   </div>;
