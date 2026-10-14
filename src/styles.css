@@ -142,3 +142,8 @@
     color: var(--color-foreground);
   }
 }
+
+/* Oculta o badge do Lovable */
+#lovable-badge {
+  display: none !important;
+}
