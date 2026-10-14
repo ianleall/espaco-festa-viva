@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import bolo from "@/assets/bolo.png.asset.json";
+import painel from "@/assets/painel.png.asset.json";
+import mesa from "@/assets/mesa.png.asset.json";
 
 export const Route = createFileRoute("/")({ component: FestaViva });
 
@@ -104,7 +107,11 @@ function FestaViva() {
         <div className="fv-art" role="img" aria-label="Emblema decorativo dourado inspirado na identidade do Espaço Festa Viva"><div className="fv-emblem">ESPAÇO<br/>FESTA VIVA<small>FESTAS &amp; EVENTOS</small></div></div>
       </div></section>
       <section className="fv-section fv-alt" id="espaco"><div className="fv-wrap"><div className="fv-kicker">Um lugar para celebrar</div><h2>Tudo pronto para a sua festa acontecer</h2><p className="fv-intro">Você escolhe a data e conta o que imagina. O espaço cuida do cenário.</p><div className="fv-grid">{DIFERENCIAIS.map(d => <article className="fv-card" key={d.titulo}><h3>{d.titulo}</h3><p>{d.texto}</p></article>)}</div></div></section>
-      <section className="fv-section" id="galeria"><div className="fv-wrap"><div className="fv-kicker">Detalhes que fazem a diferença</div><h2>Veja como as festas ganham vida</h2><div className="fv-gallery"><div className="fv-gallery-art" role="img" aria-label="Composição decorativa em tons dourados para celebrações"><span>Momentos inesquecíveis</span></div><div className="fv-gallery-art" role="img" aria-label="Cenário elegante em tons quentes"><span>Cada detalhe importa</span></div><div className="fv-gallery-art" role="img" aria-label="Ambiente acolhedor para eventos"><span>Feito para celebrar</span></div></div></div></section>
+      <section className="fv-section" id="galeria"><div className="fv-wrap"><div className="fv-kicker">Detalhes que fazem a diferença</div><h2>Veja como as festas ganham vida</h2><div className="fv-gallery">{[
+        { src: painel.url, alt: "Painel com balões azuis e prateados e letreiro neon Happy Birthday", t: "Momentos inesquecíveis" },
+        { src: bolo.url, alt: "Bolo de três andares em azul, preto e prata", t: "Cada detalhe importa" },
+        { src: mesa.url, alt: "Mesa de doces com arranjo de flores e balões azuis", t: "Feito para celebrar" },
+      ].map(f => <figure className="fv-gallery-art" key={f.t} style={{margin:0}}><img src={f.src} alt={f.alt} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}}/><span style={{position:"relative",textShadow:"0 2px 12px #000"}}>{f.t}</span></figure>)}</div></div></section>
       <section className="fv-section fv-alt" id="avaliacoes"><div className="fv-wrap"><div className="fv-kicker">Experiências compartilhadas</div><h2>Quem já celebrou aqui</h2><div className="fv-rating"><strong>4,3</strong><span><span aria-label="11 avaliações no Google">★★★★★</span><br/>Nota no Google, com 11 avaliações · <a href={MAPS_URL} target="_blank" rel="noreferrer" style={{color:"var(--gold-light)"}}>Ver todas</a></span></div><div className="fv-reviews">{AVALIACOES.map((a,i)=><figure className="fv-card" key={i}><blockquote>“{a.texto}”</blockquote><figcaption>{a.nome}</figcaption></figure>)}</div></div></section>
       <section className="fv-section" id="contato"><div className="fv-wrap fv-contact"><div><div className="fv-kicker">Vamos conversar</div><h2>Vamos planejar a sua festa?</h2><p className="fv-intro">Preencha os dados ao lado e retornaremos com datas disponíveis e valores.</p><div className="fv-info"><div><b>Onde fica</b><span>{ENDERECO}</span><br/><a href={MAPS_URL} target="_blank" rel="noreferrer">Ver no mapa ↗</a></div><div><b>WhatsApp</b><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Enviar mensagem pelo WhatsApp ↗</a></div><div><b>Instagram</b><a href={INSTAGRAM} target="_blank" rel="noreferrer">@espacofestaviva ↗</a></div></div></div><Orcamento/></div></section>
     </main>
