@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+<rect width="256" height="256" rx="128" fill="#241b12"/>
+<circle cx="128" cy="128" r="116" fill="none" stroke="#d8a94f" stroke-width="3"/>
+<circle cx="128" cy="128" r="92" fill="none" stroke="#d8a94f" stroke-width="1.5"/>
+<path d="M49 53 Q128 15 207 53 L190 91 Q128 65 66 91Z" fill="#11110e"/>
+<text x="128" y="61" fill="#edc36c" font-family="Georgia,serif" font-size="18" letter-spacing="5" text-anchor="middle">ESPAÇO</text>
+<g fill="#dcae32" stroke="#f3d16f" stroke-width="2">
+<ellipse cx="128" cy="112" rx="21" ry="29"/><ellipse cx="103" cy="143" rx="23" ry="29"/><ellipse cx="153" cy="143" rx="23" ry="29"/>
+</g>
+<g fill="#fff0a0" opacity=".9"><ellipse cx="122" cy="101" rx="4" ry="8"/><ellipse cx="95" cy="132" rx="4" ry="7"/><ellipse cx="145" cy="132" rx="4" ry="7"/></g>
+<path d="M128 141 Q123 176 128 205 M103 170 Q116 187 128 205 M153 170 Q138 188 128 205" fill="none" stroke="#d8c9a9" stroke-width="1.3"/>
+<path d="M54 176 Q128 222 202 176 L187 155 Q128 184 69 155Z" fill="#11110e"/>
+<text x="128" y="190" fill="#edc36c" font-family="Georgia,serif" font-size="14" letter-spacing="4" text-anchor="middle">FESTA VIVA</text>
+</svg>
